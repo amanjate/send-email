@@ -19,11 +19,21 @@ public class SendMail {
 	
 	public static void main(String[] args) throws AddressException, MessagingException, IOException {
 			
-			// First, go to https://myaccount.google.com/lesssecureapps and switch on the button.
-			final String USERNAME = "dipdrhup@gmail.com";
-			final String PASSWORD = "dip4dm1n";
+
+			// This is your gmail account
+			// First, go to https://myaccount.google.com/lesssecureapps and activate access.
+			final String FROM = "your_account@gmail.com";
+
+
+			final String PASSWORD = "your_password";
 			
+			// This is the destination address
+			final String TO = "to@gmail.com";
+
 			Properties properties = new Properties();
+
+
+			// If you have to use something else than gmail, you may needd to change the following configurations
 			
 			properties.put("mail.smtp.auth", "true");
 			properties.put("mail.smtp.starttls.eneble", "true");
@@ -33,7 +43,7 @@ public class SendMail {
 			
 			Session session = Session.getInstance(properties, new Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
-					return new PasswordAuthentication(USERNAME, PASSWORD);
+					return new PasswordAuthentication(FROM, PASSWORD);
 				}
 			});
 			
@@ -42,15 +52,15 @@ public class SendMail {
 			MimeBodyPart body = new MimeBodyPart();
 			MimeBodyPart pdf = new MimeBodyPart();
 			
-			body.setText("Nada importante. Apenas um e-mail com anexo.");
-			pdf.attachFile("/home/aderito/Documents/SGCOF.pdf");
+			body.setText("This is the text you want to send.");
+			pdf.attachFile("/absolute/path/to/document.pdf");
 			
 			content.addBodyPart(body);
 			content.addBodyPart(pdf);
 			
-			email.setFrom(new InternetAddress(USERNAME));
-			email.addRecipient(MimeMessage.RecipientType.TO, new InternetAddress("amanjate@outlook.com"));
-			email.setSubject("E-Mail com anexo");
+			email.setFrom(new InternetAddress(FROM));
+			email.addRecipient(MimeMessage.RecipientType.TO, new InternetAddress(TO));
+			email.setSubject("E-Mail with attachment");
 			email.setContent(content);
 			
 			Transport.send(email);
