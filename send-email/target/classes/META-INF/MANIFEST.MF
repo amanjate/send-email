@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: aderito
+Build-Jdk: 11.0.13
+Implementation-Title: SendMail
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: mz.co.amanjate.email
+Implementation-Vendor: Pivotal Software, Inc.
+Implementation-URL: http://projects.spring.io/spring-boot/sendmail/
+Created-By: Maven Integration for Eclipse
+
